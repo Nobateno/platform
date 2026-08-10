@@ -1,0 +1,43 @@
+{
+  "name": "customer-panel",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/customer/src",
+  "projectType": "application",
+  "targets": {
+    "dev": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/customer",
+        "command": "corepack pnpm exec next dev --port 4211"
+      },
+      "continuous": true,
+      "cache": false
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/customer",
+        "command": "corepack pnpm run build"
+      },
+      "outputs": ["{projectRoot}/.next"],
+      "cache": true
+    },
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/customer",
+        "command": "corepack pnpm run lint"
+      },
+      "cache": true
+    },
+    "start": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/customer",
+        "command": "corepack pnpm exec next start --port 4211"
+      },
+      "continuous": true,
+      "cache": false
+    }
+  }
+}
