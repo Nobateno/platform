@@ -1,0 +1,7 @@
+import type { TranslationResource } from "./en";
+
+export const de = {
+  nav: { schedule: "Terminplanung", business: "Geschäft", bookingChannels: "Buchungskanäle", management: "Verwaltung", overview: "Übersicht", reservations: "Buchungen", availability: "Verfügbarkeit", customers: "Kunden", services: "Leistungen", team: "Team", publicPresence: "Buchungsseite", communications: "Kommunikation", voiceBooking: "Sprachbuchung", reports: "Berichte", planBilling: "Tarif & Abrechnung", businessSettings: "Geschäftseinstellungen" },
+  shell: { app: "Anbieterbereich", dashboards: "Übersicht", analytics: "Betrieb", quickSearch: "Buchungen, Kunden und Leistungen suchen", openMenu: "Navigation öffnen", closeMenu: "Navigation schließen", mainNavigation: "Navigation des Anbieterbereichs", activities: "Aktivitäten", darkMode: "Dunkelmodus", lightMode: "Hellmodus", fullscreen: "Vollbild", notifications: "Benachrichtigungen", switchAccount: "Geschäft wechseln", connectedServices: "Verbundene Dienste", emailSettings: "Nachrichteneinstellungen", resetPassword: "Sicherheitseinstellungen", profile: "Geschäftseinstellungen", logout: "Abmelden", language: "Sprache", brand: "Nobateno", userAvatar: "Kontomenü", accountMenu: "Kontomenü", signedInAs: "Angemeldet als {{name}}", roleOwner: "Inhaber", roleReceptionist: "Empfang", roleStaff: "Mitarbeiter", skipToContent: "Zum Hauptinhalt springen" },
+  common: { search: "Suchen", save: "Speichern", cancel: "Abbrechen", loading: "Wird geladen", close: "Schließen", back: "Zurück" },
+} satisfies TranslationResource;

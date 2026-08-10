@@ -1,0 +1,31 @@
+@font-face {
+  font-family: "Dana";
+  src: url("../../fonts/dana/Dana-Regular.woff") format("woff");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Dana";
+  src: url("../../fonts/dana/Dana-Medium.woff") format("woff");
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Dana";
+  src: url("../../fonts/dana/Dana-DemiBold.woff") format("woff");
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Dana";
+  src: url("../../fonts/dana/Dana-Bold.woff") format("woff");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}

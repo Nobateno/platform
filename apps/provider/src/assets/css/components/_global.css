@@ -1,0 +1,80 @@
+html {
+    body {
+        letter-spacing: 0;
+        font-size: theme("fontSize.sm");
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        font-family: theme("fontFamily.public-sans");
+        color: theme("colors.m3.on-surface");
+        background-color: theme("colors.m3.background");
+        line-height: theme("lineHeight.5");
+    }
+
+    &.dark body {
+        color: theme("colors.m3.on-surface");
+        background-color: theme("colors.m3.background");
+    }
+
+    &:lang(fa) body,
+    &:lang(fa) .litepicker {
+        font-family: theme("fontFamily.dana");
+        font-optical-sizing: auto;
+    }
+
+    &:lang(fa) .side-menu,
+    &:lang(fa) button,
+    &:lang(fa) input,
+    &:lang(fa) select,
+    &:lang(fa) textarea {
+        font-family: theme("fontFamily.dana");
+    }
+
+    &:lang(zh) body,
+    &:lang(zh) button,
+    &:lang(zh) input,
+    &:lang(zh) select,
+    &:lang(zh) textarea {
+        font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+    }
+
+    &:lang(ja) body,
+    &:lang(ja) button,
+    &:lang(ja) input,
+    &:lang(ja) select,
+    &:lang(ja) textarea {
+        font-family: "Noto Sans JP", "Hiragino Sans", "Yu Gothic UI", "Meiryo", system-ui, sans-serif;
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    html::view-transition-group(root) {
+        animation-duration: 400ms;
+        animation-timing-function: cubic-bezier(0.2, 0, 0, 1);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html::view-transition-group(root),
+    html::view-transition-old(root),
+    html::view-transition-new(root) {
+        animation-duration: 0s;
+    }
+}
+
+@layer utilities {
+    .m3-display-large { font-size: 57px; line-height: 64px; font-weight: 400; }
+    .m3-display-medium { font-size: 45px; line-height: 52px; font-weight: 400; }
+    .m3-display-small { font-size: 36px; line-height: 44px; font-weight: 400; }
+    .m3-headline-large { font-size: 32px; line-height: 40px; font-weight: 400; }
+    .m3-headline-medium { font-size: 28px; line-height: 36px; font-weight: 400; }
+    .m3-headline-small { font-size: 24px; line-height: 32px; font-weight: 400; }
+    .m3-title-large { font-size: 22px; line-height: 28px; font-weight: 400; }
+    .m3-title-medium { font-size: 16px; line-height: 24px; font-weight: 500; }
+    .m3-title-small { font-size: 14px; line-height: 20px; font-weight: 500; }
+    .m3-body-large { font-size: 16px; line-height: 24px; font-weight: 400; }
+    .m3-body-medium { font-size: 14px; line-height: 20px; font-weight: 400; }
+    .m3-body-small { font-size: 12px; line-height: 16px; font-weight: 400; }
+    .m3-label-large { font-size: 14px; line-height: 20px; font-weight: 500; }
+    .m3-label-medium { font-size: 12px; line-height: 16px; font-weight: 500; }
+    .m3-label-small { font-size: 11px; line-height: 16px; font-weight: 500; }
+}

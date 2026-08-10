@@ -1,0 +1,7 @@
+import type { TranslationResource } from "./en";
+
+export const ru = {
+  nav: { schedule: "Расписание", business: "Бизнес", bookingChannels: "Каналы записи", management: "Управление", overview: "Обзор", reservations: "Бронирования", availability: "Доступность", customers: "Клиенты", services: "Услуги", team: "Команда", publicPresence: "Страница бронирования", communications: "Сообщения", voiceBooking: "Голосовая запись", reports: "Отчеты", planBilling: "Тариф и оплата", businessSettings: "Настройки бизнеса" },
+  shell: { app: "Панель поставщика", dashboards: "Обзор", analytics: "Операции", quickSearch: "Поиск бронирований, клиентов и услуг", openMenu: "Открыть навигацию", closeMenu: "Закрыть навигацию", mainNavigation: "Навигация панели поставщика", activities: "Действия", darkMode: "Темная тема", lightMode: "Светлая тема", fullscreen: "Полный экран", notifications: "Уведомления", switchAccount: "Сменить бизнес", connectedServices: "Подключенные сервисы", emailSettings: "Настройки сообщений", resetPassword: "Настройки безопасности", profile: "Настройки бизнеса", logout: "Выйти", language: "Язык", brand: "Nobateno", userAvatar: "Меню учетной записи", accountMenu: "Меню учетной записи", signedInAs: "Выполнен вход: {{name}}", roleOwner: "Владелец", roleReceptionist: "Администратор", roleStaff: "Сотрудник", skipToContent: "Перейти к основному содержимому" },
+  common: { search: "Поиск", save: "Сохранить", cancel: "Отмена", loading: "Загрузка", close: "Закрыть", back: "Назад" },
+} satisfies TranslationResource;
