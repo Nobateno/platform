@@ -1,0 +1,25 @@
+:root {
+  --n-ui-primary: #5365d8;
+  --n-ui-on-primary: #ffffff;
+  --n-ui-primary-container: #dee1ff;
+  --n-ui-on-primary-container: #11194c;
+  --n-ui-background: #f8f8ff;
+  --n-ui-surface: #ffffff;
+  --n-ui-surface-container: #f0f1fa;
+  --n-ui-surface-high: #e4e6f2;
+  --n-ui-on-surface: #151724;
+  --n-ui-muted: #676a7d;
+  --n-ui-outline: #c4c5d3;
+  --n-ui-outline-variant: #e0e1ec;
+  --n-ui-success: #1f7a5f;
+  --n-ui-warning: #8a5a00;
+  --n-ui-radius-card: 12px;
+  --n-ui-radius-button: 12px;
+  --n-ui-shadow-1: 0 2px 3px rgb(0 0 0 / 12%);
+}
+
+/* Provider kit compatibility utilities used by the mobile button wrapper. */
+.bg-m3-primary { background-color: var(--n-ui-primary); }
+.text-m3-on-primary { color: var(--n-ui-on-primary); }
+.m3-label-large { font-size: 14px; font-weight: 700; line-height: 20px; }
+.shadow-m3-1 { box-shadow: var(--n-ui-shadow-1); }

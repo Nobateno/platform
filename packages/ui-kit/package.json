@@ -1,0 +1,18 @@
+{
+  "name": "@nobateno/ui-kit",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./customer-experience": "./src/customer-experience.ts",
+    "./foundation.css": "./src/foundation.css",
+    "./provider-button": "./src/provider-button.tsx"
+  },
+  "dependencies": {
+    "tailwind-merge": "^2.6.1"
+  },
+  "peerDependencies": {
+    "react": ">=19.0.0",
+    "react-dom": ">=19.0.0"
+  }
+}
