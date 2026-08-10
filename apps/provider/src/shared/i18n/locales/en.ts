@@ -1,0 +1,63 @@
+export const en = {
+  nav: {
+    schedule: "Schedule",
+    business: "Business",
+    bookingChannels: "Booking channels",
+    management: "Management",
+    overview: "Overview",
+    reservations: "Reservations",
+    availability: "Availability",
+    customers: "Customers",
+    services: "Services",
+    team: "Team",
+    publicPresence: "Booking page",
+    communications: "Communications",
+    voiceBooking: "Voice booking",
+    reports: "Reports",
+    planBilling: "Plan & billing",
+    businessSettings: "Business settings",
+  },
+  shell: {
+    app: "Provider panel",
+    dashboards: "Overview",
+    analytics: "Operations",
+    quickSearch: "Search reservations, customers, and services",
+    openMenu: "Open navigation",
+    closeMenu: "Close navigation",
+    mainNavigation: "Provider panel navigation",
+    activities: "Activities",
+    darkMode: "Dark mode",
+    lightMode: "Light mode",
+    fullscreen: "Fullscreen",
+    notifications: "Notifications",
+    switchAccount: "Switch business",
+    connectedServices: "Connected services",
+    emailSettings: "Message settings",
+    resetPassword: "Security settings",
+    profile: "Business settings",
+    logout: "Sign out",
+    language: "Language",
+    brand: "Nobateno",
+    userAvatar: "Account menu",
+    accountMenu: "Account menu",
+    signedInAs: "Signed in as {{name}}",
+    roleOwner: "Owner",
+    roleReceptionist: "Receptionist",
+    roleStaff: "Staff",
+    skipToContent: "Skip to main content",
+  },
+  common: {
+    search: "Search",
+    save: "Save",
+    cancel: "Cancel",
+    loading: "Loading",
+    close: "Close",
+    back: "Back",
+  },
+} as const;
+
+export type TranslationResource = {
+  [Section in keyof typeof en]: {
+    [Key in keyof (typeof en)[Section]]: string;
+  };
+};

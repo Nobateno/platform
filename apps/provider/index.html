@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Multilingual Nobateno provider administration panel"
+    />
+    <title>Nobateno Provider Panel</title>
+    <script>
+      try {
+        const supportedLanguages = {
+          fa: ["fa", "rtl"],
+          en: ["en", "ltr"],
+          zh: ["zh-Hans", "ltr"],
+          es: ["es", "ltr"],
+          ru: ["ru", "ltr"],
+          pt: ["pt-BR", "ltr"],
+          fr: ["fr", "ltr"],
+          de: ["de", "ltr"],
+          ja: ["ja", "ltr"],
+        };
+        const storedLanguage = localStorage.getItem("language") || "fa";
+        const language = supportedLanguages[storedLanguage]
+          ? storedLanguage
+          : "fa";
+        document.documentElement.lang = supportedLanguages[language][0];
+        document.documentElement.dir = supportedLanguages[language][1];
+        document.documentElement.dataset.language = language;
+
+        const preferences = JSON.parse(
+          localStorage.getItem("nobateno-ui") || "{}",
+        );
+        document.documentElement.classList.toggle(
+          "dark",
+          preferences.state?.darkMode?.value === true,
+        );
+      } catch {}
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

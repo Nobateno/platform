@@ -1,0 +1,77 @@
+{
+  "name": "provider-panel",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/provider/src",
+  "projectType": "application",
+  "targets": {
+    "dev": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/provider",
+        "command": "corepack pnpm exec vite --port 4212"
+      },
+      "continuous": true,
+      "cache": false
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/provider",
+        "command": "corepack pnpm run build"
+      },
+      "outputs": ["{projectRoot}/dist"],
+      "cache": false
+    },
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/provider",
+        "command": "corepack pnpm run lint"
+      },
+      "cache": true
+    },
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/provider",
+        "command": "corepack pnpm run typecheck"
+      },
+      "cache": true
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/provider",
+        "command": "corepack pnpm run test:run"
+      },
+      "cache": true
+    },
+    "perf": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
+      "options": {
+        "cwd": "apps/provider",
+        "command": "corepack pnpm run test:perf"
+      },
+      "cache": false
+    },
+    "storybook": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/provider",
+        "command": "corepack pnpm run storybook"
+      },
+      "continuous": true,
+      "cache": false
+    },
+    "build-storybook": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/provider",
+        "command": "corepack pnpm run build-storybook"
+      },
+      "outputs": ["{projectRoot}/storybook-static"],
+      "cache": true
+    }
+  }
+}

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 16" role="img" aria-label="Iran">
+  <defs>
+    <clipPath id="rounded-flag">
+      <rect width="24" height="16" rx="2"/>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#rounded-flag)">
+    <path fill="#239f40" d="M0 0h24v5.333H0z"/>
+    <path fill="#fff" d="M0 5.333h24v5.334H0z"/>
+    <path fill="#da0000" d="M0 10.667h24V16H0z"/>
+    <path fill="#da0000" d="M12 6.05c.38.7.74 1.2 1.08 1.5-.25.2-.46.45-.62.74.22.44.55.84.98 1.2-.42.31-.9.52-1.44.61-.54-.09-1.02-.3-1.44-.61.43-.36.76-.76.98-1.2a2.5 2.5 0 0 0-.62-.74c.34-.3.7-.8 1.08-1.5Z"/>
+  </g>
+  <rect x=".25" y=".25" width="23.5" height="15.5" rx="1.75" fill="none" stroke="#000" stroke-opacity=".12" stroke-width=".5"/>
+</svg>

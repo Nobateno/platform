@@ -1,0 +1,7 @@
+import type { TranslationResource } from "./en";
+
+export const es = {
+  nav: { schedule: "Agenda", business: "Negocio", bookingChannels: "Canales de reserva", management: "Gestión", overview: "Resumen", reservations: "Reservas", availability: "Disponibilidad", customers: "Clientes", services: "Servicios", team: "Equipo", publicPresence: "Página de reservas", communications: "Comunicaciones", voiceBooking: "Reserva por voz", reports: "Informes", planBilling: "Plan y facturación", businessSettings: "Ajustes del negocio" },
+  shell: { app: "Panel del proveedor", dashboards: "Resumen", analytics: "Operaciones", quickSearch: "Buscar reservas, clientes y servicios", openMenu: "Abrir navegación", closeMenu: "Cerrar navegación", mainNavigation: "Navegación del panel", activities: "Actividad", darkMode: "Modo oscuro", lightMode: "Modo claro", fullscreen: "Pantalla completa", notifications: "Notificaciones", switchAccount: "Cambiar negocio", connectedServices: "Servicios conectados", emailSettings: "Ajustes de mensajes", resetPassword: "Ajustes de seguridad", profile: "Ajustes del negocio", logout: "Cerrar sesión", language: "Idioma", brand: "Nobateno", userAvatar: "Menú de cuenta", accountMenu: "Menú de cuenta", signedInAs: "Sesión iniciada como {{name}}", roleOwner: "Propietario", roleReceptionist: "Recepcionista", roleStaff: "Personal", skipToContent: "Saltar al contenido principal" },
+  common: { search: "Buscar", save: "Guardar", cancel: "Cancelar", loading: "Cargando", close: "Cerrar", back: "Volver" },
+} satisfies TranslationResource;
