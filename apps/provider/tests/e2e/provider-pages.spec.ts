@@ -34,6 +34,25 @@ test("loads every owner page without runtime errors", async ({ page }) => {
   expect(pageErrors).toEqual([]);
 });
 
+test("keeps deferred setup visible on the owner overview", async ({ page }) => {
+  await loginAsOwner(page);
+  await page.goto("/onboarding");
+
+  await expect(
+    page.getByRole("heading", { name: "First-publish checklist" }),
+  ).toBeVisible();
+  await page.getByRole("link", { name: "Go to dashboard for now" }).click();
+
+  await expect(page).toHaveURL(/\/$/);
+  await expect(
+    page.getByRole("heading", { name: "Required progress" }),
+  ).toBeVisible();
+  await expect(page.getByText("0 of 5 required items")).toBeVisible();
+  await expect(
+    page.getByRole("link", { name: "At least one service is active" }),
+  ).toHaveAttribute("href", "/add-product");
+});
+
 test("creates a conflict-free manual reservation and updates its status", async ({ page }) => {
   await loginAsOwner(page);
   await page.goto("/transaction-list?create=1");
