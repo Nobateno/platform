@@ -8,6 +8,11 @@ import {
 } from "react-router-dom";
 import AdminShell from "@/app/shell";
 import {
+  OnboardingJourneyProvider,
+  OnboardingProgressBanner,
+  useOnboardingJourney,
+} from "@/app/onboarding";
+import {
   canAccessArea,
   getDefaultAreaPath,
   type ProviderArea,
@@ -102,36 +107,53 @@ function protectedPage(area: ProviderArea, page: ReactNode) {
 
 function ProviderOverview() {
   const reservations = useReservationStore((state) => state.reservations);
-  return <Overview reservations={reservations} />;
+  return (
+    <>
+      <OnboardingProgressBanner />
+      <Overview reservations={reservations} />
+    </>
+  );
+}
+
+function ProviderOnboarding() {
+  const { activate, progress, updateStep } = useOnboardingJourney();
+
+  useEffect(() => {
+    activate();
+  }, [activate]);
+
+  return <Onboarding progress={progress} onProgressChange={updateStep} />;
 }
 
 export default function App() {
   return (
     <Suspense fallback={<RouteFallback fullScreen />}>
-      <Routes>
-        <Route path="/login" element={<LoginRoute />} />
-        <Route path="/forgot-password" element={<ForgotPasswordRoute />} />
-        <Route path="/" element={protectedPage("overview", <ProviderOverview />)} />
-        <Route path="/transaction-list" element={protectedPage("reservations", <ReservationList />)} />
-        <Route path="/transaction-detail/:id" element={protectedPage("reservations", <ReservationDetail />)} />
-        <Route path="/transaction-detail" element={protectedPage("reservations", <ReservationDetail />)} />
-        <Route path="/availability" element={protectedPage("availability", <Availability />)} />
-        <Route path="/users" element={protectedPage("customers", <CustomerList />)} />
-        <Route path="/add-user" element={protectedPage("customers", <CreateCustomer />)} />
-        <Route path="/users/:customerId" element={protectedPage("customers", <CustomerDetail />)} />
-        <Route path="/product-list" element={protectedPage("services", <ServiceList />)} />
-        <Route path="/add-product" element={protectedPage("services", <CreateService />)} />
-        <Route path="/categories" element={protectedPage("services", <ServiceCategories />)} />
-        <Route path="/team" element={protectedPage("team", <Team />)} />
-        <Route path="/booking-page" element={protectedPage("publicPresence", <PublicPresence />)} />
-        <Route path="/communications" element={protectedPage("communications", <Communications />)} />
-        <Route path="/voice-booking" element={protectedPage("voiceBooking", <VoiceBooking />)} />
-        <Route path="/reports" element={protectedPage("reports", <Reports />)} />
-        <Route path="/invoice" element={protectedPage("planBilling", <Billing />)} />
-        <Route path="/settings" element={protectedPage("businessSettings", <BusinessSettings />)} />
-        <Route path="/onboarding" element={protectedPage("onboarding", <Onboarding />)} />
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
+      <OnboardingJourneyProvider>
+        <Routes>
+          <Route path="/login" element={<LoginRoute />} />
+          <Route path="/forgot-password" element={<ForgotPasswordRoute />} />
+          <Route path="/" element={protectedPage("overview", <ProviderOverview />)} />
+          <Route path="/transaction-list" element={protectedPage("reservations", <ReservationList />)} />
+          <Route path="/transaction-detail/:id" element={protectedPage("reservations", <ReservationDetail />)} />
+          <Route path="/transaction-detail" element={protectedPage("reservations", <ReservationDetail />)} />
+          <Route path="/availability" element={protectedPage("availability", <Availability />)} />
+          <Route path="/users" element={protectedPage("customers", <CustomerList />)} />
+          <Route path="/add-user" element={protectedPage("customers", <CreateCustomer />)} />
+          <Route path="/users/:customerId" element={protectedPage("customers", <CustomerDetail />)} />
+          <Route path="/product-list" element={protectedPage("services", <ServiceList />)} />
+          <Route path="/add-product" element={protectedPage("services", <CreateService />)} />
+          <Route path="/categories" element={protectedPage("services", <ServiceCategories />)} />
+          <Route path="/team" element={protectedPage("team", <Team />)} />
+          <Route path="/booking-page" element={protectedPage("publicPresence", <PublicPresence />)} />
+          <Route path="/communications" element={protectedPage("communications", <Communications />)} />
+          <Route path="/voice-booking" element={protectedPage("voiceBooking", <VoiceBooking />)} />
+          <Route path="/reports" element={protectedPage("reports", <Reports />)} />
+          <Route path="/invoice" element={protectedPage("planBilling", <Billing />)} />
+          <Route path="/settings" element={protectedPage("businessSettings", <BusinessSettings />)} />
+          <Route path="/onboarding" element={protectedPage("onboarding", <ProviderOnboarding />)} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </OnboardingJourneyProvider>
     </Suspense>
   );
 }

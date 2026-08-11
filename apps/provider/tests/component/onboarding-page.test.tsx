@@ -1,5 +1,6 @@
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { MemoryRouter } from "react-router-dom";
 import { describe, expect, it } from "vitest";
 import {
   OnboardingPage,
@@ -9,21 +10,30 @@ import {
 import { renderWithDomainI18n } from "../helpers/render-with-domain-i18n";
 
 describe("OnboardingPage", () => {
-  it("requires five cross-domain prerequisites but keeps team setup optional", async () => {
+  it("guides the five required setup areas and keeps publishing blocked until they are complete", async () => {
     const user = userEvent.setup();
     await renderWithDomainI18n(
-      <OnboardingPage />,
+      <MemoryRouter>
+        <OnboardingPage />
+      </MemoryRouter>,
       onboardingNamespace,
       onboardingResources,
     );
 
     const publishButton = screen.getByRole("button", { name: "Publish booking page" });
     expect(publishButton).toBeDisabled();
-    expect(screen.getByRole("checkbox", { name: "A team member and their bookable services are configured" })).not.toBeChecked();
+    expect(screen.getAllByRole("link", { name: "Set this up" })).toHaveLength(5);
+    expect(screen.getAllByRole("link", { name: "Set this up" })[0]).toHaveAttribute(
+      "href",
+      "/add-product",
+    );
+    expect(
+      screen.getByRole("link", { name: "Go to dashboard for now" }),
+    ).toHaveAttribute("href", "/");
 
     for (const label of [
-      "Business profile is complete",
       "At least one service is active",
+      "Business profile is complete",
       "Bookable availability is configured",
       "Booking policy is configured",
       "Public-page preview has been reviewed",
