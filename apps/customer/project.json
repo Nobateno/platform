@@ -38,6 +38,14 @@
       },
       "continuous": true,
       "cache": false
+    },
+    "preview": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/customer",
+        "command": "corepack pnpm run preview"
+      },
+      "cache": false
     }
   }
 }
