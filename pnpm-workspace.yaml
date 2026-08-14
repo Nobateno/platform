@@ -15,3 +15,4 @@ allowBuilds:
   nx: true
   sharp: true
   unrs-resolver: true
+  "workerd@1.20260811.1": true
