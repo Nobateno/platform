@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { isDemoMode } from "@/shared/config/environment";
 
 export type PanelRole = "owner" | "receptionist" | "staff";
 export type OtpPurpose = "registration" | "password-reset";
@@ -120,7 +121,7 @@ function storeDemoSession(user: PanelUser) {
 }
 
 function readDemoSession(): PanelUser | undefined {
-  if (!import.meta.env.DEV || typeof window === "undefined") return undefined;
+  if (!isDemoMode || typeof window === "undefined") return undefined;
 
   try {
     const stored = window.sessionStorage.getItem(DEMO_SESSION_KEY);
@@ -159,7 +160,7 @@ async function postJson(path: string, body: object): Promise<Response> {
 }
 
 function useDemoFallback(): boolean {
-  return import.meta.env.DEV && typeof window !== "undefined";
+  return isDemoMode && typeof window !== "undefined";
 }
 
 function isMissingDevEndpoint(response: Response): boolean {
@@ -457,7 +458,7 @@ export const useStore = create<AuthStore>((set, get) => ({
     }
   },
   loginDemo: (role) => {
-    if (!import.meta.env.DEV) return undefined;
+    if (!isDemoMode) return undefined;
 
     const user = demoUsers[role];
     storeDemoSession(user);
@@ -491,4 +492,4 @@ export const useStore = create<AuthStore>((set, get) => ({
   },
 }));
 
-export const isDemoAuthAvailable = import.meta.env.DEV;
+export const isDemoAuthAvailable = isDemoMode;
