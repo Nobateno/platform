@@ -46,6 +46,14 @@
         "command": "corepack pnpm run preview"
       },
       "cache": false
+    },
+    "deploy": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/customer",
+        "command": "corepack pnpm run deploy"
+      },
+      "cache": false
     }
   }
 }
