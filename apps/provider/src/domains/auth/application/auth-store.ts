@@ -183,41 +183,44 @@ export const useStore = create<AuthStore>((set, get) => ({
     });
   },
   lookupPhone: async (phone) => {
-    set({ pending: true, error: undefined });
+  set({ pending: true, error: undefined });
 
-    try {
-      const response = await postJson("/api/provider/auth/phone-lookup", {
-        phone,
-      });
-      if (!response.ok) {
-        if (isMissingDevEndpoint(response)) {
-          set({ pending: false, error: undefined });
-          return phone in demoPhoneRoles;
-        }
-        set({ pending: false, error: "unavailable" });
-        return undefined;
-      }
+  if (isDemoMode) {
+    set({ pending: false, error: undefined });
 
-      const payload: unknown = await response.json();
-      if (
-        !payload ||
-        typeof payload !== "object" ||
-        typeof (payload as { exists?: unknown }).exists !== "boolean"
-      ) {
-        throw new Error("Invalid phone lookup response");
-      }
+    return phone in demoPhoneRoles;
+  }
 
-      set({ pending: false, error: undefined });
-      return (payload as { exists: boolean }).exists;
-    } catch {
-      if (useDemoFallback()) {
-        set({ pending: false, error: undefined });
-        return phone in demoPhoneRoles;
-      }
+  try {
+    const response = await postJson("/api/provider/auth/phone-lookup", {
+      phone,
+    });
+
+    if (!response.ok) {
       set({ pending: false, error: "unavailable" });
+
       return undefined;
     }
-  },
+
+    const payload: unknown = await response.json();
+
+    if (
+      !payload ||
+      typeof payload !== "object" ||
+      typeof (payload as { exists?: unknown }).exists !== "boolean"
+    ) {
+      throw new Error("Invalid phone lookup response");
+    }
+
+    set({ pending: false, error: undefined });
+
+    return (payload as { exists: boolean }).exists;
+  } catch {
+    set({ pending: false, error: "unavailable" });
+
+    return undefined;
+  }
+},
   requestOtp: async (phone, purpose) => {
     set({ pending: true, error: undefined });
 
@@ -284,14 +287,46 @@ export const useStore = create<AuthStore>((set, get) => ({
     }
   },
   login: async ({ phone, password }) => {
-    window.sessionStorage.removeItem(DEMO_SESSION_KEY);
-    set({ currentUser: undefined, pending: true, error: undefined });
+  window.sessionStorage.removeItem(DEMO_SESSION_KEY);
 
-    try {
-      const response = await postJson("/api/provider/session", {
-        phone,
-        password,
+  set({
+    currentUser: undefined,
+    pending: true,
+    error: undefined,
+  });
+
+  if (isDemoMode) {
+    const demoRole = demoPhoneRoles[phone];
+
+    if (!demoRole || password !== DEMO_PASSWORD) {
+      set({
+        status: "anonymous",
+        pending: false,
+        error: "invalidCredentials",
       });
+
+      return undefined;
+    }
+
+    const user = demoUsers[demoRole];
+
+    storeDemoSession(user);
+
+    set({
+      currentUser: user,
+      status: "authenticated",
+      pending: false,
+      error: undefined,
+    });
+
+    return user;
+  }
+
+  try {
+    const response = await postJson("/api/provider/session", {
+      phone,
+      password,
+    });
 
       if (!response.ok) {
         const demoRole = demoPhoneRoles[phone];
