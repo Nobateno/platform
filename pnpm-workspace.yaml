@@ -1,8 +1,16 @@
 packages:
   - apps/*
   - packages/*
+
+minimumReleaseAgeExclude:
+  - "@smithy/core@3.33.0"
+  - "@smithy/node-http-handler@4.11.0"
+  - "content-type@2.1.0"
+  - "miniflare@5.20260811.1-alpha"
+  - "wrangler@4.123.0"
+
 allowBuilds:
-  '@sentry/cli': true
+  "@sentry/cli": true
   esbuild: true
   nx: true
   sharp: true
